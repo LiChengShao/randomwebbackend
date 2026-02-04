@@ -1,0 +1,23 @@
+# 服务器配置
+server:
+  port: 8888 # 后端端口，默认8080，后续前端请求该端口
+
+# 数据库配置
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver # MySQL 8.0 驱动（5.7 可改为 com.mysql.jdbc.Driver）
+    url: jdbc:mysql://localhost:3306/random_web?useUnicode=true&characterEncoding=utf8&serverTimezone=Asia/Shanghai&allowMultiQueries=true
+    username: root # 你的MySQL用户名（默认root）
+    password: awjdw/527475sweWD. # 你的MySQL密码（修改为自己的）
+  # 静态资源配置：映射本地壁纸文件夹，让前端能访问
+  web:
+    resources:
+      static-locations: classpath:static/,file:./src/main/resources/static/
+
+# MyBatis-Plus 配置
+mybatis-plus:
+  mapper-locations: classpath:mapper/*.xml # Mapper.xml 文件路径
+  type-aliases-package: com.example.randomwebbackend.entity # 实体类别名包
+  configuration:
+    map-underscore-to-camel-case: true # 下划线转驼峰（数据库字段_对应实体类字段驼峰）
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl # 打印SQL日志（方便调试）
